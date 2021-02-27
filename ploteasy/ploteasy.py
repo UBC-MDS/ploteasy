@@ -23,7 +23,8 @@ def plot_bar(df,x,y):
                                     'num_specimen_seen': [10, 2, 1, 8]})
     >>> plot_bar(example_df,animal,num_legs)
 
-
+"""
+    
 def plot_hist(df, density = False, title = "Histogram", exclude = []):
     """Takes a dataframe and returns an altair object with histograms of all categorical features in the dataset.
     Parameters
