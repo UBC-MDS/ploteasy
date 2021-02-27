@@ -15,7 +15,7 @@ Types of Contributions
 Report Bugs
 ~~~~~~~~~~~
 
-Report bugs at https://github.com/fei-chang/ploteasy/issues.
+Report bugs at https://github.com/UBC-MDS/ploteasy/issues.
 
 If you are reporting a bug, please include:
 
