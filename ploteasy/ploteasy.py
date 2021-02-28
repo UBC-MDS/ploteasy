@@ -36,7 +36,7 @@ def plot_bar(df,x,y):
     X : string
         User must specify a numerical column
     Y : string, optional
-        User can specify another numerical column, by default the y lab shows the 		numerical information of X
+        User can specify another numerical column, by default the y lab shows the numerical information of X
    
     Returns
     -------
@@ -45,11 +45,11 @@ def plot_bar(df,x,y):
 
     Examples
     -------
-    >>> example_df = pd.DataFrame({'animal': ['falcon', 'dog', 'spider', 'fish'],
-                                    'num_legs': [2, 4, 8, 0],
-                                    'num_wings': [2, 0, 0, 0],
-                                    'num_specimen_seen': [10, 2, 1, 8]})
-    >>> plot_bar(example_df,animal,num_legs)
+    >>> example_df = pd.DataFrame({'student_id': [10000, 10001, 10002, 10003],
+                                    'gender': ['female', 'male', 'male', 'female'],
+                                    'department': ['statistics', 'biology', 'art', 'movie'],
+                                    'age': [21, 23, 22, 21]})
+    >>> plot_bar(example_df,gender)
 
 """
     
