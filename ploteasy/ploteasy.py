@@ -1,3 +1,7 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import warnings
+
 def plot_scatter(df, x, y):
     """Takes a dataframe and returns an altair object with scatterplot of chosen numeric features in the dataset.
     Parameters
@@ -52,9 +56,9 @@ def plot_bar(df,x,y):
     >>> plot_bar(example_df,gender)
 
 """
-    
+
 def plot_hist(df, density = False, title = "Histogram", exclude = []):
-    """Takes a dataframe and returns an altair object with histograms of all categorical features in the dataset.
+    """Takes a dataframe and returns an altair object with histograms of all numerical features in the dataset.
     Parameters
     -----------
     df: pd.DataFrame
@@ -68,7 +72,7 @@ def plot_hist(df, density = False, title = "Histogram", exclude = []):
     Returns
     -------
     plot : altair.Chart object
-        An altair plot object displaying histograms of all categorical features in the dataset.
+        An altair plot object displaying histograms of all numerical features in the dataset.
     Examples
     -------
     >>> example_df = pd.DataFrame({'student_id': [10000, 10001, 10002, 10003],
@@ -76,7 +80,25 @@ def plot_hist(df, density = False, title = "Histogram", exclude = []):
                                     'department': ['statistics', 'biology', 'art', 'movie'],
                                     'age': [21, 23, 22, 21]})
     >>> ploteasy.plot_hist(example_df)
-
     """
-    pass
-
+    
+    if not isinstance(df, pd.DataFrame):
+        raise Exception("The input should be a valid dataframe.")
+    if not isinstance(density, bool):
+        raise Exception("The 'density' option should be one of the boolean types: True or False.")
+    if not isinstance(exclude, list):
+        raise Exception("The 'exclude' option should be a valid list of columns to be excluded.")
+    
+    df_numeric = df._get_numeric_data()
+    showing_col = df_numeric.drop(columns = exclude)
+    if len(showing_col.columns) == 0:
+        warnings.warn("No valid column to plot histogram. Please check the input dataframe")
+    for col in showing_col.columns:
+        plt.hist(df[col], density = density)
+        plt.xlabel(col)
+        if density:
+            plt.ylabel("Density")
+        else:
+            plt.ylabel("Count")
+        plt.title(title)
+        plt.show()
