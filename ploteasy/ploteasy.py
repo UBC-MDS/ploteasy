@@ -1,21 +1,34 @@
+
 import pandas as pd
 import altair as alt
 import warnings
 import altair
 
-def plot_scatter(df, x, y):
+def plot_scatter(data, x, y, color="green", title=None, plot_width=300, plot_height=300):
     """Takes a dataframe and returns an altair object with scatterplot of chosen numeric features in the dataset.
     Parameters
     -----------
-    df: pd.DataFrame
+    data: pd.DataFrame
         The dataframe used to create a scatterplot
-
+        
     X : string
         User must specify a numerical column
         
     Y : string, optional
         User can specify another numerical column
-        
+    
+    color : string, optional
+            User can specify color of points
+      
+    title : string, optional
+            User can specify title of plot
+      
+    plot_width: integer, optional
+                Width of the plot.
+      
+    plot_height: integer, optional
+                Height of the plot
+      
     Returns
     -------
     plot : altair.Chart object
@@ -29,7 +42,34 @@ def plot_scatter(df, x, y):
                                     'hours_exercise': [1, 3, 5]})
     >>> ploteasy.plot_scatter(example)
     """
-    pass
+    if not isinstance(data, pd.DataFrame):
+        raise TypeError("`data` must be entered as a pandas dataframe")
+    elif not isinstance(x, str):
+        raise ValueError("`x` must be a string")
+    elif not isinstance(y, str):
+        raise ValueError("`y` must be a string")
+    elif not isinstance(color, str):
+        raise ValueError("`color` must be a string")
+    elif title is None:
+        raise ValueError("Please enter your title")
+    elif not isinstance(title, str):
+        raise ValueError("`title` must be a string")    
+    elif not isinstance(plot_width, int):
+        raise ValueError("plot_width must be an integer")
+    elif not isinstance(plot_height, int):
+        raise ValueError("plot_height must be an integer")
+    
+
+    
+    scatter_plot = (
+        alt.Chart(data, title=alt.TitleParams(text=title))
+        .mark_circle(size=20, opacity=0.6, color=color)
+        .encode(
+            alt.X(x),
+            alt.Y(y),
+        ).properties(width=plot_width, height=plot_height).configure_axis(titleFontSize=18, labelFontSize=12))
+    
+    return scatter_plot 
 
 
 def plot_bar(df,x,y):
