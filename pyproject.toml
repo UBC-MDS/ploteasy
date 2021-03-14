@@ -9,6 +9,16 @@ license = "MIT"
 python = "^3.8"
 
 [tool.poetry.dev-dependencies]
+pytest-cov = "^2.11.1"
+pytest = "^6.2.2"
+codecov = "^2.1.11"
+flake8 = "^3.8.4"
+pandas = "^1.2.3"
+altair = "^4.1.0"
+Sphinx = "^3.5.2"
+nbsphinx = "^0.8.2"
+ipykernel = "^5.5.0"
+vega-datasets = "^0.9.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
