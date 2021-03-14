@@ -2,31 +2,27 @@ import pandas as pd
 import altair as alt
 import warnings
 
-def plot_scatter(data, x, y, color="green", title=None, plot_width=300, plot_height=300):
-    """Takes a dataframe and returns an altair object with scatterplot of chosen numeric features in the dataset.
+
+def plot_scatter(data, x, y, color="green",
+                 title=None, plot_width=300, plot_height=300):
+    """Takes a dataframe and returns an altair object with
+    scatterplot of chosen numeric features in the dataset.
     X : string
         User must specify a numerical column
     Y : string, optional
         User can specify another numerical column
-
-    
     color : string, optional
             User can specify color of points
-      
     title : string, optional
             User can specify title of plot
-      
     plot_width: integer, optional
                 Width of the plot.
-      
     plot_height: integer, optional
                 Height of the plot
-
     Returns
     -------
     plot : altair.Chart object
         An altair plot object displaying scatterplot.
-
     Examples
     -------
     >>> example_df = pd.DataFrame({'student_id': [10000, 10001],
@@ -45,7 +41,7 @@ def plot_scatter(data, x, y, color="green", title=None, plot_width=300, plot_hei
     elif title is None:
         raise ValueError("Please enter your title")
     elif not isinstance(title, str):
-        raise ValueError("`title` must be a string")    
+        raise ValueError("`title` must be a string")
     elif not isinstance(plot_width, int):
         raise ValueError("plot_width must be an integer")
     elif not isinstance(plot_height, int):
@@ -56,41 +52,39 @@ def plot_scatter(data, x, y, color="green", title=None, plot_width=300, plot_hei
         .encode(
             alt.X(x),
             alt.Y(y),
-        ).properties(width=plot_width, height=plot_height).
-      configure_axis(titleFontSize=18, labelFontSize=12))
-    return scatter_plot 
+        ).properties(
+            width=plot_width,
+            height=plot_height
+        ).configure_axis(
+            titleFontSize=18,
+            labelFontSize=12))
+    return scatter_plot
 
 
-def plot_bar(data, x, y, color="green", title=None, plot_width=300, plot_height=300):
-    """Takes a dataframe and returns an altair object with scatterplot of chosen numeric features in the dataset.
+def plot_bar(data, x, y, color="green",
+             title=None, plot_width=300, plot_height=300):
+    """Takes a dataframe and returns an altair object
+    with scatterplot of chosen numeric features in the dataset.
     Parameters
     -----------
     data: pd.DataFrame
         The dataframe used to create a scatterplot
-        
     X : string
         User must specify a numerical column
-        
     Y : string, optional
         User can specify another numerical column
-    
     color : string, optional
             User can specify color of points
-      
     title : string, optional
             User can specify title of plot
-      
     plot_width: integer, optional
                 Width of the plot.
-      
     plot_height: integer, optional
                 Height of the plot
-      
     Returns
     -------
     plot : altair.Chart object
         An altair plot object displaying scatterplot.
-        
     Examples
     -------
     >>> example = pd.DataFrame({'name': ['Jingjing', 'Fei', 'Mengyuan'],
@@ -110,7 +104,7 @@ def plot_bar(data, x, y, color="green", title=None, plot_width=300, plot_height=
     elif title is None:
         raise ValueError("Please enter your title")
     elif not isinstance(title, str):
-        raise ValueError("`title` must be a string")    
+        raise ValueError("`title` must be a string")
     elif not isinstance(plot_width, int):
         raise ValueError("plot_width must be an integer")
     elif not isinstance(plot_height, int):
@@ -121,12 +115,13 @@ def plot_bar(data, x, y, color="green", title=None, plot_width=300, plot_height=
         .encode(
             alt.X(x),
             alt.Y(y),
-        ).properties(width=plot_width, height=plot_height).configure_axis(titleFontSize=18, labelFontSize=12))
+        ))
     return plot_bar
 
 
-def plot_hist(df, density = False, title = "Histogram", exclude = []):
-    """Takes a dataframe and returns a list of altair objects as histograms of all numerical features in the dataset.
+def plot_hist(df, density=False, title="Histogram", exclude=[]):
+    """Takes a dataframe and returns a list of altair objects as
+    histograms of all numerical features in the dataset.
     Parameters
     -----------
     df: pd.DataFrame
