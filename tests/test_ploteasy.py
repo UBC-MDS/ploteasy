@@ -1,12 +1,7 @@
-from ploteasy import __version__
 from ploteasy import ploteasy
 import altair as alt
 import pytest
 from vega_datasets import data
-
-
-def test_version():
-    assert __version__ == '0.1.0'
 
 
 def load_input_df():
